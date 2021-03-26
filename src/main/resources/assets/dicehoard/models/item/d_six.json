@@ -1,4 +1,12 @@
 {
   "loader": "forge:obj",
-  "model" : "dicehoard:models/dice/d_six.obj"
+  "model" : "dicehoard:models/dice/d_six.obj",
+  "display": {
+    "gui": {
+      "translation": [4, 1, 0]
+    },
+    "ground": {
+      "translation": [4, 1, 0]
+    }
+  }
 }
