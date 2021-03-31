@@ -3,10 +3,10 @@
   "model" : "dicehoard:models/dice/d_six.obj",
   "display": {
     "gui": {
-      "translation": [4, 1, 0]
+      "translation": [10, 3, 5]
     },
     "ground": {
-      "translation": [4, 1, 0]
+      "translation": [9.6, 5, 8]
     }
   }
 }
