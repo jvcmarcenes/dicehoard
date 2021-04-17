@@ -4,7 +4,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -20,6 +22,8 @@ public class Main {
   public static final Logger LOGGER = LogManager.getLogger();
   public static final String MOD_ID = "dicehoard";
 
+  public static final PhysicsHandler PHYSICS = new PhysicsHandler();
+
   public Main() {
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -28,6 +32,11 @@ public class Main {
 
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(ClientEventHandler.class);
+  }
+
+  @SubscribeEvent
+  public void tick(TickEvent.WorldTickEvent event) {
+    PHYSICS.tick();
   }
 
   public static final ItemGroup ITEM_GROUP = new ItemGroup("dicehoard"){
