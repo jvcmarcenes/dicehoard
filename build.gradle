@@ -101,7 +101,7 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.16.4-35.1.4'
 
-    compile 'cz.advel.jbullet:jbullet:20101010-1'
+    // compile 'cz.advel.jbullet:jbullet:20101010-1'
     // compile 'com.github.stephengold:Libbulletjme:10.3.0'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..

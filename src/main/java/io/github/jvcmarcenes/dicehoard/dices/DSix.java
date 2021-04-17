@@ -23,8 +23,7 @@ public class DSix extends Item {
     if (!world.isRemote) {
       DSixEntity ent = new DSixEntity(world, player);
       ent.setItem(stack);
-      //ent.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0f, 1f, 0.0f);
-      ent.createPhysicsObject(player);
+      ent.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0f, 1f, 0.0f);
       world.addEntity(ent);
     }
 
