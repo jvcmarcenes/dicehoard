@@ -1,5 +1,5 @@
 # Vectary OBJ Export units=mm
-mtllib d_six.mtl
+mtllib dtwenty.mtl
 o 000_Polyhedron_-_baked
 g Polyhedron_-_baked
 usemtl Box material 1_8e6c859c-3d06-4542-9a9f-30e25adb91e2

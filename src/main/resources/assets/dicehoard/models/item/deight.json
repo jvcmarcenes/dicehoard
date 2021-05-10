@@ -1,0 +1,12 @@
+{
+  "loader": "forge:obj",
+  "model" : "dicehoard:models/dice/deight.obj",
+  "display": {
+    "gui": {
+      "translation": [10, 3, 5]
+    },
+    "ground": {
+      "translation": [9.6, 5, 8]
+    }
+  }
+}

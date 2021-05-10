@@ -1,6 +1,6 @@
 {
   "loader": "forge:obj",
-  "model" : "dicehoard:models/dice/d_six.obj",
+  "model" : "dicehoard:models/dice/dtwenty.obj",
   "display": {
     "gui": {
       "translation": [10, 3, 5]
