@@ -1,0 +1,4 @@
+newmtl Box material 1_8e6c859c-3d06-4542-9a9f-30e25adb91e2
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd dicehoard:item/white

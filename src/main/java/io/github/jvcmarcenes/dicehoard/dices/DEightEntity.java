@@ -8,27 +8,28 @@ import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class DSixEntity extends DiceEntity {
+public class DEightEntity extends DiceEntity {
 
-  public DSixEntity(EntityType<? extends ProjectileItemEntity> type, World world) {
+  public DEightEntity(EntityType<? extends ProjectileItemEntity> type, World world) {
     super(type, world);
   }
 
-  public DSixEntity(World world, LivingEntity entity) {
+  public DEightEntity(World world, LivingEntity entity) {
     super(ModEntityTypes.DSIX.get(), entity, world);
   }
 
-  public DSixEntity(World world, int x, int y, int z) {
+  public DEightEntity(World world, int x, int y, int z) {
     super(ModEntityTypes.DSIX.get(), x, y, z, world);
   }
 
   @Override
   protected Item getDefaultItem() {
-    return ModItems.DSIX.get();
+    return ModItems.DEIGHT.get();
   }
 
   @Override
   protected int getMaxRoll() {
-    return 6;
+    return 8;
   }
+
 }
