@@ -2,9 +2,10 @@ package io.github.jvcmarcenes.dicehoard;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -12,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.github.jvcmarcenes.dicehoard.client.ClientEventHandler;
+import io.github.jvcmarcenes.dicehoard.dices.DiceEntity;
 import io.github.jvcmarcenes.dicehoard.init.*;
 
 @Mod(Main.MOD_ID)
@@ -30,9 +32,23 @@ public class Main {
     MinecraftForge.EVENT_BUS.register(ClientEventHandler.class);
   }
 
-  public static final ItemGroup ITEM_GROUP = new ItemGroup("dicehoard"){
+  public static final ItemGroup ITEM_GROUP = new ItemGroup("dicehoard") {
     public ItemStack createIcon() {
-      return new ItemStack(Items.DIAMOND);
+      return ModItems.DTWELVE.get().colorStack(0x940a0a);
     };
   };
+
+  @SubscribeEvent
+  public static void onEntityInteraction(PlayerInteractEvent.EntityInteract e) {
+    if (e.getWorld().isRemote()) return;
+
+    if (!(e.getTarget() instanceof DiceEntity)) return;
+      
+    DiceEntity dice = (DiceEntity)e.getTarget();
+    ItemStack diceItem = dice.getItem().copy();
+
+    dice.remove();
+    
+    e.getPlayer().addItemStackToInventory(diceItem);
+  }
 }

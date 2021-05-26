@@ -15,11 +15,11 @@ public class DTenEntity extends DiceEntity {
   }
 
   public DTenEntity(World world, LivingEntity entity) {
-    super(ModEntityTypes.DSIX.get(), entity, world);
+    super(ModEntityTypes.DTEN.get(), entity, world);
   }
 
   public DTenEntity(World world, int x, int y, int z) {
-    super(ModEntityTypes.DSIX.get(), x, y, z, world);
+    super(ModEntityTypes.DTEN.get(), x, y, z, world);
   }
 
   @Override

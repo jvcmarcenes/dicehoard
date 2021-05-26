@@ -28,7 +28,7 @@ public class DiceItem extends Item {
     if (!world.isRemote) {
       DiceEntity ent = factory.apply(world, player);
       ent.setItem(stack);
-      ent.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0f, 1f, 0.0f);
+      ent.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0f, .75f, 0.05f);
       world.addEntity(ent);
     }
 
@@ -42,17 +42,18 @@ public class DiceItem extends Item {
   public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
     if (!isInGroup(group)) return;
 
-    items.add(colorStack(0xd1d1d1));
-    items.add(colorStack(0x940a0a));
-    items.add(colorStack(0x0f3587));
-    items.add(colorStack(0x226e26));
-    items.add(colorStack(0x616161));
-    items.add(colorStack(0x159299));
-    items.add(colorStack(0x5a3d75));
-    items.add(colorStack(0xc46d16));
+    items.add(colorStack(0xd1d1d1)); // white
+    items.add(colorStack(0x818181)); // gray
+    items.add(colorStack(0x1d1d1d)); // black
+    items.add(colorStack(0x940a0a)); // red
+    items.add(colorStack(0x5a3d75)); // yellow
+    items.add(colorStack(0x226e26)); // green
+    items.add(colorStack(0x159299)); // cyan
+    items.add(colorStack(0x0f3587)); // blue
+    items.add(colorStack(0xc46d16)); // magenta
   }
 
-  private ItemStack colorStack(int color) {
+  public ItemStack colorStack(int color) {
     ItemStack stack = new ItemStack(this);
     CompoundNBT tag = new CompoundNBT();
     tag.putInt("color", color);

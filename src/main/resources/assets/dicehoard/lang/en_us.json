@@ -1,3 +1,9 @@
 {
-  
+  "item.dicehoard.dfour": "D4",
+  "item.dicehoard.dsix": "D6",
+  "item.dicehoard.deight": "D8",
+  "item.dicehoard.dten": "D10",
+  "item.dicehoard.dtwelve": "D12",
+  "item.dicehoard.dtwenty": "D20",
+  "imteGroup.dicehoard": "Dicehoard"
 }

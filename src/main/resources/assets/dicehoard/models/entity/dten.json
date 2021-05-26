@@ -1,0 +1,4 @@
+{
+  "loader": "forge:obj",
+  "model" : "dicehoard:models/dice/dten.obj"
+}

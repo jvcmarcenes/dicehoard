@@ -36,6 +36,15 @@ public abstract class BouncingEntity extends ProjectileItemEntity {
   protected abstract Item getDefaultItem();
 
   @Override
+  public void tick() {
+    super.tick();
+
+    if (Math.abs(getMotion().getY()) > 0.1 && landed) {
+      landed = false;
+    }
+  }
+
+  @Override
   protected void onImpact(RayTraceResult result) {
     if (!world.isRemote) {
       if (result.getType() == RayTraceResult.Type.BLOCK) {
@@ -52,7 +61,10 @@ public abstract class BouncingEntity extends ProjectileItemEntity {
     Vector3d m = this.getMotion();
     if (Math.abs(m.getY()) < 0.1) {
       this.setMotion(m.getX(), 0.0d, m.getZ());
-      landed = true;
+      if (landed == false) {
+        landed = true;
+        this.onLanded();
+      }
     } else {
       landed = false;
     }
@@ -61,6 +73,8 @@ public abstract class BouncingEntity extends ProjectileItemEntity {
   public boolean isLanded() {
     return landed;
   }
+
+  protected abstract void onLanded();
 
   @Override
   public void writeAdditional(CompoundNBT compound) {
@@ -78,5 +92,4 @@ public abstract class BouncingEntity extends ProjectileItemEntity {
   public IPacket<?> createSpawnPacket() {
     return NetworkHooks.getEntitySpawningPacket(this);
   }
-  
 }

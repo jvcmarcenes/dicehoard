@@ -15,11 +15,11 @@ public class DFourEntity extends DiceEntity {
   }
 
   public DFourEntity(World world, LivingEntity entity) {
-    super(ModEntityTypes.DSIX.get(), entity, world);
+    super(ModEntityTypes.DFOUR.get(), entity, world);
   }
 
   public DFourEntity(World world, int x, int y, int z) {
-    super(ModEntityTypes.DSIX.get(), x, y, z, world);
+    super(ModEntityTypes.DFOUR.get(), x, y, z, world);
   }
 
   @Override

@@ -3,7 +3,9 @@
   "model" : "dicehoard:models/dice/dfour.obj",
   "display": {
     "gui": {
-      "translation": [10, 3, 5]
+      "translation": [8, 3, 5],
+      "rotation": [25, 25, 0],
+      "scale": [0.8, 0.8, 0.8]
     },
     "ground": {
       "translation": [9.6, 5, 8]

@@ -1,10 +1,10 @@
 {
   "loader": "forge:obj",
-  "model" : "dicehoard:models/dice/deight.obj",
+  "model" : "dicehoard:models/dice/dten.obj",
   "display": {
     "gui": {
       "translation": [10, 3, 5],
-      "rotation": [15, 25, 0]
+      "rotation": [0, 0, 0]
     },
     "ground": {
       "translation": [9.6, 5, 8]

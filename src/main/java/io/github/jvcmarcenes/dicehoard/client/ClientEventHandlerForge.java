@@ -32,7 +32,7 @@ public class ClientEventHandlerForge {
 
       ms.push();
 
-      ms.translate(ent.getPosX() - mc.player.getPosX(), ent.getPosY() + .1 - mc.player.getPosY(), ent.getPosZ() - mc.player.getPosZ());
+      ms.translate(ent.getPosX() - mc.player.getPosX(), ent.getPosY() - mc.player.getPosY(), ent.getPosZ() - mc.player.getPosZ());
       ms.rotate(mc.getRenderManager().getCameraOrientation());
       ms.scale(-0.05f, -0.05f, 0.05f);
 

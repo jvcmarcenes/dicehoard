@@ -5,6 +5,8 @@ import io.github.jvcmarcenes.dicehoard.client.renderer.DiceRenderer;
 import io.github.jvcmarcenes.dicehoard.dices.DEightEntity;
 import io.github.jvcmarcenes.dicehoard.dices.DFourEntity;
 import io.github.jvcmarcenes.dicehoard.dices.DSixEntity;
+import io.github.jvcmarcenes.dicehoard.dices.DTenEntity;
+import io.github.jvcmarcenes.dicehoard.dices.DTwelveEntity;
 import io.github.jvcmarcenes.dicehoard.dices.DTwentyEntity;
 import io.github.jvcmarcenes.dicehoard.init.ModEntityTypes;
 import io.github.jvcmarcenes.dicehoard.init.ModItems;
@@ -58,18 +60,18 @@ public class ClientEventHandler {
         return new DiceRenderer(manager, "entity/deight");
       }
     });
-    // RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DTEN.get(), new IRenderFactory<DTenEntity>() {
-    //   @Override
-    //   public EntityRenderer<? super DTenEntity> createRenderFor(EntityRendererManager manager) {
-    //     return new DiceRenderer(manager, "entity/dten");
-    //   }
-    // });
-    // RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DTWELVE.get(), new IRenderFactory<DTwelveEntity>() {
-    //   @Override
-    //   public EntityRenderer<? super DTwelveEntity> createRenderFor(EntityRendererManager manager) {
-    //     return new DiceRenderer(manager, "entity/dtwelve");
-    //   }
-    // });
+    RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DTEN.get(), new IRenderFactory<DTenEntity>() {
+      @Override
+      public EntityRenderer<? super DTenEntity> createRenderFor(EntityRendererManager manager) {
+        return new DiceRenderer(manager, "entity/dten");
+      }
+    });
+    RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DTWELVE.get(), new IRenderFactory<DTwelveEntity>() {
+      @Override
+      public EntityRenderer<? super DTwelveEntity> createRenderFor(EntityRendererManager manager) {
+        return new DiceRenderer(manager, "entity/dtwelve");
+      }
+    });
     RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DTWENTY.get(), new IRenderFactory<DTwentyEntity>() {
       @Override
       public EntityRenderer<? super DTwentyEntity> createRenderFor(EntityRendererManager manager) {
@@ -83,8 +85,8 @@ public class ClientEventHandler {
     ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/dfour"));
     ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/dsix"));
     ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/deight"));
-    // ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/dten"));
-    // ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/dtwelve"));
+    ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/dten"));
+    ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/dtwelve"));
     ModelLoader.addSpecialModel(new ResourceLocation(Main.MOD_ID, "entity/dtwenty"));
   }
 

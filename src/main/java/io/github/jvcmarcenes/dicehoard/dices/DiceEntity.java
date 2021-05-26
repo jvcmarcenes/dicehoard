@@ -1,25 +1,23 @@
 package io.github.jvcmarcenes.dicehoard.dices;
 
+import io.github.jvcmarcenes.dicehoard.Main;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
+import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public abstract class DiceEntity extends BouncingEntity {
 
-  // private static final String ROLLED_TAG = "rolled";
-  //private static final String COLOR_TAG = "color";
-
   private static final DataParameter<Integer> COLOR = EntityDataManager.createKey(DiceEntity.class, DataSerializers.VARINT);
   private static final DataParameter<Integer> ROLLED_NUMBER = EntityDataManager.createKey(DiceEntity.class, DataSerializers.VARINT);
-
-  // protected int rolledNumber = -1;
-  //protected int color = -1;
 
   public DiceEntity(EntityType<? extends ProjectileItemEntity> type, World world) {
     super(type, world);
@@ -34,12 +32,10 @@ public abstract class DiceEntity extends BouncingEntity {
   }
 
   public int getRolledNumber() {
-    // return rolledNumber;
     return this.dataManager.get(ROLLED_NUMBER);
   }
 
   public int getColor() {
-    // return color;
     return this.dataManager.get(COLOR);
   }
 
@@ -49,21 +45,26 @@ public abstract class DiceEntity extends BouncingEntity {
 
     int color = stack.getTag().getInt("color");
     this.dataManager.set(COLOR, color);
-
-    // color = stack.getTag().getInt("color");
   }
 
+  // @Override
+  // public void tick() {
+  //   super.tick();
+
+  //   if (isLanded() && getRolledNumber() == -1) {
+  //     int rolled = world.rand.nextInt(getMaxRoll()) + 1;
+  //     this.dataManager.set(ROLLED_NUMBER, rolled);
+  //   }
+
+  //   if (!isLanded()) {
+  //     this.dataManager.set(ROLLED_NUMBER, -1);
+  //   }
+  // }
+
   @Override
-  public void tick() {
-    super.tick();
-
-    if (isLanded() && getRolledNumber() == -1) {
-      int rolled = world.rand.nextInt(getMaxRoll()) + 1;
-      this.dataManager.set(ROLLED_NUMBER, rolled);
-    }
-
-    // if (isLanded() && rolledNumber == -1)
-    //   rolledNumber = world.rand.nextInt(getMaxRoll()) + 1;
+  protected void onLanded() {
+    int rolled = world.rand.nextInt(getMaxRoll()) + 1;
+    this.dataManager.set(ROLLED_NUMBER, rolled);
   }
 
   @Override
@@ -74,20 +75,23 @@ public abstract class DiceEntity extends BouncingEntity {
     this.dataManager.register(ROLLED_NUMBER, -1);
   }
 
-  @Override
-  public void writeAdditional(CompoundNBT compound) {
-    super.writeAdditional(compound);
-    // compound.putInt(ROLLED_TAG, rolledNumber);
-    // compound.putInt(COLOR_TAG, color);
-  }
+  // @Override
+  // public AxisAlignedBB getBoundingBox() {
+  //   return new AxisAlignedBB(0, 0, 0, 16, 16, 16);
+  // }
 
-  @Override
-  public void readAdditional(CompoundNBT compound) {
-    super.readAdditional(compound);
-    // rolledNumber = compound.getInt(ROLLED_TAG);
-    // color = compound.getInt(COLOR_TAG);
-  }
+  // @Override
+  // protected AxisAlignedBB getBoundingBox(Pose pose) {
+  //   return this.getBoundingBox();
+  // }
 
   protected abstract int getMaxRoll();
   
+  @Override
+  public boolean hitByEntity(Entity entity) {
+    Main.LOGGER.info(this.getName().getString() + " was hit by " + entity.getName().getString());
+
+    return super.hitByEntity(entity);
+  }
+
 }
