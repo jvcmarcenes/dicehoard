@@ -2,10 +2,13 @@ package io.github.jvcmarcenes.dicehoard;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -39,13 +42,15 @@ public class Main {
   };
 
   @SubscribeEvent
-  public static void onEntityInteraction(PlayerInteractEvent.EntityInteract e) {
+  public void onEntityInteraction(PlayerInteractEvent.EntityInteract e) {
     if (e.getWorld().isRemote()) return;
 
     if (!(e.getTarget() instanceof DiceEntity)) return;
-      
+    if (e.getHand() == Hand.OFF_HAND) return;
+    
     DiceEntity dice = (DiceEntity)e.getTarget();
     ItemStack diceItem = dice.getItem().copy();
+    diceItem.setCount(1);
 
     dice.remove();
     

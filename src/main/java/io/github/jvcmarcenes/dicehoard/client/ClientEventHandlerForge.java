@@ -21,6 +21,7 @@ public class ClientEventHandlerForge {
     
     for (Entity ent : mc.world.getAllEntities()) {
       if (!(ent instanceof DiceEntity)) continue;
+      if (mc.player.getPositionVec().distanceTo(ent.getPositionVec()) > 30) continue;
 
       DiceEntity dent = (DiceEntity)ent;
 
@@ -41,7 +42,5 @@ public class ClientEventHandlerForge {
 
       ms.pop();
     }
-
   }
-
 }

@@ -27,8 +27,9 @@ public class DiceItem extends Item {
 
     if (!world.isRemote) {
       DiceEntity ent = factory.apply(world, player);
-      ent.setItem(stack);
-      ent.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0f, .75f, 0.05f);
+      ItemStack diceStack = stack.copy();
+      ent.setItem(diceStack);
+      ent.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0f, .45f, 0.05f);
       world.addEntity(ent);
     }
 
@@ -46,11 +47,11 @@ public class DiceItem extends Item {
     items.add(colorStack(0x818181)); // gray
     items.add(colorStack(0x1d1d1d)); // black
     items.add(colorStack(0x940a0a)); // red
-    items.add(colorStack(0x5a3d75)); // yellow
+    items.add(colorStack(0xc46d16)); // orange
     items.add(colorStack(0x226e26)); // green
     items.add(colorStack(0x159299)); // cyan
     items.add(colorStack(0x0f3587)); // blue
-    items.add(colorStack(0xc46d16)); // magenta
+    items.add(colorStack(0x5a3d75)); // magenta
   }
 
   public ItemStack colorStack(int color) {

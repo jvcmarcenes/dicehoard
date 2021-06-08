@@ -1,17 +1,14 @@
 package io.github.jvcmarcenes.dicehoard.dices;
 
-import io.github.jvcmarcenes.dicehoard.Main;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public abstract class DiceEntity extends BouncingEntity {
@@ -46,21 +43,7 @@ public abstract class DiceEntity extends BouncingEntity {
     int color = stack.getTag().getInt("color");
     this.dataManager.set(COLOR, color);
   }
-
-  // @Override
-  // public void tick() {
-  //   super.tick();
-
-  //   if (isLanded() && getRolledNumber() == -1) {
-  //     int rolled = world.rand.nextInt(getMaxRoll()) + 1;
-  //     this.dataManager.set(ROLLED_NUMBER, rolled);
-  //   }
-
-  //   if (!isLanded()) {
-  //     this.dataManager.set(ROLLED_NUMBER, -1);
-  //   }
-  // }
-
+  
   @Override
   protected void onLanded() {
     int rolled = world.rand.nextInt(getMaxRoll()) + 1;
@@ -75,23 +58,25 @@ public abstract class DiceEntity extends BouncingEntity {
     this.dataManager.register(ROLLED_NUMBER, -1);
   }
 
-  // @Override
-  // public AxisAlignedBB getBoundingBox() {
-  //   return new AxisAlignedBB(0, 0, 0, 16, 16, 16);
-  // }
+  @Override public boolean canBeCollidedWith() { return true; }
+  // @Override public boolean canBePushed() { return true; }
+  @Override public boolean canBeAttackedWithItem() { return true; }
+  @Override public boolean canSwim() { return true; }
 
-  // @Override
-  // protected AxisAlignedBB getBoundingBox(Pose pose) {
-  //   return this.getBoundingBox();
-  // }
-
-  protected abstract int getMaxRoll();
-  
   @Override
   public boolean hitByEntity(Entity entity) {
-    Main.LOGGER.info(this.getName().getString() + " was hit by " + entity.getName().getString());
+
+    Vector3d dir = this.getPositionVec()
+      .subtract(entity.getPositionVec().add(0.0, entity.getEyeHeight(), 0.0))
+      .normalize()
+      .scale(0.35);
+
+    // this.setMotion(dir.x, dir.y < 0 ? -dir.y : dir.y, dir.z);
+    this.setMotion(dir);
 
     return super.hitByEntity(entity);
   }
+
+  protected abstract int getMaxRoll();
 
 }

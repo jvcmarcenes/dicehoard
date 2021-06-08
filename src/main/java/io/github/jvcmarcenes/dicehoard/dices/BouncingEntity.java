@@ -9,7 +9,6 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -53,14 +52,14 @@ public abstract class BouncingEntity extends ProjectileItemEntity {
         Vector3d m = this.getMotion();
         Vector3d _m = new Vector3d(m.getX() * (a == Direction.Axis.X ? -1 : 1), m.getY() * (a == Direction.Axis.Y ? -1 : 1), m.getZ() * (a == Direction.Axis.Z ? -1 : 1));
         this.setMotion(_m.scale(0.3));
-
-        Vector2f r = this.getPitchYaw();
-        this.setRotation(r.x * .5f, r.y * .4f);
       }
     }
+
     Vector3d m = this.getMotion();
+
     if (Math.abs(m.getY()) < 0.1) {
       this.setMotion(m.getX(), 0.0d, m.getZ());
+
       if (landed == false) {
         landed = true;
         this.onLanded();
